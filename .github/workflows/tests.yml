@@ -32,9 +32,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create File to be mounted
         run: |
-        echo "some text" > someFile
-        ls
-        cat someFile
+          echo "some text" > someFile
+          ls
+          cat someFile
       - name: Run docker action with mounted workspace
         uses: ./
         id: run-docker
