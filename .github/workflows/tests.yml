@@ -34,6 +34,7 @@ jobs:
         run: |
           echo "some text" > someFile
           ls
+          echo "contents of someFile:"
           cat someFile
       - name: Run docker action with mounted workspace
         uses: ./
@@ -42,6 +43,7 @@ jobs:
           image: docker
           options: -v ${{ github.workspace }}:/work
           run: |
+            ls
             echo "::set-output name=file-contents::`cat /work/someFile`"
       - name: Check if file contents match
         uses: actions/github-script@v3
