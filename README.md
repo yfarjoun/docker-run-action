@@ -55,4 +55,23 @@
     run: |
       echo "first line"
       echo "second line"
+
+```
+
+#### use an image that has an entrypoint which is just waiting for a command
+* For example:
+```Dockerfile
+ENTRYPOINT ["conda", "run", "-n", "Template", "--no-capture-output", "bash", "-c"]
+```
+
+```yaml
+- uses: addnab/docker-run-action@v3
+  with:
+    image: custom_with_conda:latest
+    shell: 
+    preprecommand_prefix: 
+    run: |
+      echo "first line"
+      echo "second line"
+      conda info
 ```
