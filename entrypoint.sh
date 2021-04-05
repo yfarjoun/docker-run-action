@@ -10,7 +10,7 @@ fi
 
 COMMAND_PREFIX="-c"
 
-if [ "$INPUT_USE_SHELL_ENTRYPOINT" -e "true" ]; then 
+if [ "$INPUT_USE_SHELL_ENTRYPOINT" = "true" ]; then 
 	COMMAND_PREFIX=""
 	INPUT_SHELL=""	
 fi
