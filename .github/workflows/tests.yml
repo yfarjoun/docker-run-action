@@ -32,20 +32,26 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run docker action and set output for testing
         uses: ./
-        id: run-docker
+        id: run-env
         with:
           use_shell_entrypoint: false
           image: docker:20.10.3
           shell: <DISABLED>
           run: |
-            sh -c 'echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"'
+            env
       - name: Test the output
         uses: actions/github-script@v3
         with:
           script: |
-            const dockerVersion = '${{ steps.run-docker.outputs.docker-version }}';
-            if (dockerVersion !== '20.10.3') {
-              core.setFailed(`Smoke Test Failed`);
+            const dockerVersion = '${{ steps.run-env.outputs.docker-version }}';
+
+            function hasShellLevel(str){   
+                return str.match("^SHLVL=")
+            }
+
+            const filtered = dockerVersion.split("\n").filter(hasShellLevel)
+            if (filtered.length == 0 || filtered[0] !== 'SHLVL=1') {
+              core.setFailed(`Shell level Test Failed`);
             }
   volume-mount-test:
     runs-on: ubuntu-latest
