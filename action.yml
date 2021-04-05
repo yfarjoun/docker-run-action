@@ -15,10 +15,10 @@ inputs:
     description: 'Use a specific shell'
     required: false
     default: sh
-  precommand_prefix: 
-    description: 'flag needed before ''run'' command'
+  use_shell_entrypoint: 
+    description: 'A flag indicating whether to replace the entrypoint and add a -c in the invocation of the image (true/false)'
     required: false
-    default: -c
+    default: true
   registry:
     description: 'Registry'
     required: false
