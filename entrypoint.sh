@@ -8,14 +8,15 @@ if [ ! -z $INPUT_DOCKER_NETWORK ];
 then INPUT_OPTIONS="$INPUT_OPTIONS --network $INPUT_DOCKER_NETWORK"
 fi
 
-if [ ! -z $INPUT_SHELL ];
-then INPUT_OPTIONS="$INPUT_OPTIONS --entrypoint=$INPUT_SHELL"
+COMMAND_PREFIX="-c"
+
+if [ "$INPUT_USE_SHELL_ENTRYPOINT" -e "true" ]; then 
+	COMMAND_PREFIX=""
+	INPUT_SHELL=""	
 fi
 
 if [ ! -z $INPUT_SHELL ];
 then INPUT_OPTIONS="$INPUT_OPTIONS --entrypoint=$INPUT_SHELL"
 fi
-env 
 
-set -x
 exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS $INPUT_IMAGE $INPUT_PRECOMMAND_PREFIX "`cat semicolon_delimited_script`"
