@@ -49,9 +49,13 @@ jobs:
                 return str.match("^SHLVL=")
             }
 
-            const filtered = dockerVersion.split("\n").filter(hasShellLevel)
+            var filtered = dockerVersion.split("\n").filter(hasShellLevel)
+            filtered
             if (filtered.length == 0 || filtered[0] !== 'SHLVL=1') {
+              filtered[0]
               core.setFailed(`Shell level Test Failed`);
+            } else {
+              "OK"
             }
   volume-mount-test:
     runs-on: ubuntu-latest
