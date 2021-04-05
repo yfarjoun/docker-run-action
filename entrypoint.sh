@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -x
-
+x
 if [ ! -z $INPUT_USERNAME ];
 then echo $INPUT_PASSWORD | docker login $INPUT_REGISTRY -u $INPUT_USERNAME --password-stdin
 fi
@@ -13,7 +13,7 @@ fi
 
 COMMAND_PREFIX="-c"
 
-if [ "$INPUT_USE_SHELL_ENTRYPOINT" = "true" ]; then 
+if [ "$INPUT_USE_SHELL_ENTRYPOINT" = "false" ]; then 
 	COMMAND_PREFIX=""
 	INPUT_SHELL=""	
 fi
