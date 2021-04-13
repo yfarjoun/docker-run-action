@@ -26,40 +26,6 @@ jobs:
             if (dockerVersion !== '20.10.3') {
               core.setFailed(`Smoke Test Failed`);
             }
-  test-no-shell:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run docker action and set output for testing
-        uses: ./
-        id: run-env
-        with:
-          use_shell_entrypoint: false
-          image: docker:20.10.3
-          run: |
-            env
-      # - name: Test the output
-      #   uses: actions/github-script@v3
-      #   with:
-      #     debug: true
-      #     result-encoding: string
-      #     script: |
-      #       const dockerVersion = '${{ steps.run-env.outputs.docker-version }}';
-
-      #       function hasShellLevel(str){   
-      #           return str.match(`^SHLVL=`)
-      #       }
-
-      #       console.log(dockerVersion)
-
-      #       var filtered = dockerVersion.split("\n").filter(hasShellLevel)
-      #       console.log(filtered)
-      #       if (filtered.length == 0 || filtered[0] !== `SHLVL=1`) {
-      #         console.log(filtered[0])
-      #         core.setFailed(`Shell level Test Failed`);
-      #       } else {
-      #         console.log("OK")
-      #       }
   volume-mount-test:
     runs-on: ubuntu-latest
     steps:
