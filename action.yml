@@ -14,7 +14,7 @@ inputs:
   shell:
     description: 'Use a specific shell'
     required: false
-    default: bash
+    default: sh
   shell_prefix: 
     description: 'a prefix telling the shell to execute the following (single) string as a script'
     required: false
