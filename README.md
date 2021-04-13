@@ -68,8 +68,8 @@ ENTRYPOINT ["conda", "run", "-n", "Template", "--no-capture-output", "bash", "-c
 - uses: addnab/docker-run-action@v3
   with:
     image: custom_with_conda:latest
-    shell: <WILL BE IGNORED> 
-    use_shell_entrypoint: false
+    shell: 
+    preprecommand_prefix: 
     run: |
       echo "first line"
       echo "second line"
