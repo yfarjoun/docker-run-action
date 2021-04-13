@@ -36,7 +36,6 @@ jobs:
         with:
           use_shell_entrypoint: false
           image: docker:20.10.3
-          shell: <DISABLED>
           run: |
             env
       # - name: Test the output

@@ -14,11 +14,11 @@ inputs:
   shell:
     description: 'Use a specific shell'
     required: false
-    default: sh
-  use_shell_entrypoint: 
-    description: 'A flag indicating whether to replace the entrypoint and add a -c in the invocation of the image (true/false)'
+    default: bash
+  shell_prefix: 
+    description: 'a prefix telling the shell to execute the following (single) string as a script'
     required: false
-    default: true
+    default: -c
   registry:
     description: 'Registry'
     required: false
